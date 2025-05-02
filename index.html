@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Streak Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Streak Tracker</h1>
+
+    <label for="activity">What activity did you have scheduled today?</label>
+    <select id="activity">
+        <option value="Training">Training</option>
+        <option value="Coding">Coding</option>
+    </select>
+
+    <label for="done">Did you complete that activity today?</label>
+    <select id="done">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+
+    <button onclick="runSimulation()">Submit</button>
+
+    <h2>Current Streaks:</h2>
+    <p id="training">Training streak: 0</p>
+    <p id="coding">Coding streak: 0</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
