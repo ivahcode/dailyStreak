@@ -1,35 +1,40 @@
-let trainingStreak = 0;
-let codingStreak = 0;
+let timeLeft = 100;
+const meter = document.getElementById("meter");
+const timeDisplay = document.getElementById("time-display");
 
-function incrementStreak(currentActivity) {
-    switch (currentActivity) {
-        case 'Training':
-            return ++trainingStreak;
-        case 'Coding':
-            return ++codingStreak;
+function updateMeter() {
+    timeDisplay.textContent = timeLeft;
+    meter.style.width = (timeLeft / 100 * 100) + "%";
+
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timeLeft = 0;
+        alert("Time is up!");
     }
 }
 
-function resetStreak(currentActivity) {
-    switch (currentActivity) {
-        case 'Training':
-            return trainingStreak = 0;
-        case 'Coding':
-            return codingStreak = 0;
+function decreaseTime() {
+    if (timeLeft > 0) {
+        timeLeft -= 1;
+        updateMeter();
     }
 }
 
-function runSimulation() {
-    let currentActivity = document.getElementById('activity').value;
-    let isDoneToday = document.getElementById('done').value;
-
-    if (isDoneToday === 'yes') {
-        incrementStreak(currentActivity);
-    } else {
-        resetStreak(currentActivity);
-    }
-
-    // Update the streak display
-    document.getElementById('training').textContent = 'Training streak: ' + trainingStreak;
-    document.getElementById('coding').textContent = 'Coding streak: ' + codingStreak;
+function increaseTime(amount) {
+    timeLeft += amount;
+    updateMeter();
 }
+
+function addNewButton() {
+    const newTimeValue = document.getElementById("newTimeValue").value;
+    if (newTimeValue && newTimeValue > 0) {
+        const newButton = document.createElement("button");
+        newButton.textContent = `+${newTimeValue}s`;
+        newButton.onclick = () => increaseTime(parseInt(newTimeValue));
+        document.getElementById("buttons-container").appendChild(newButton);
+    }
+}
+
+// Start the timer
+const timerInterval = setInterval(decreaseTime, 1000);
+updateMeter();
