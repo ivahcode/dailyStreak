@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Streak Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Meter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Streak Tracker</h1>
-
-    <label for="activity">What activity did you have scheduled today?</label>
-    <select id="activity">
-        <option value="Training">Training</option>
-        <option value="Coding">Coding</option>
-    </select>
-
-    <label for="done">Did you complete that activity today?</label>
-    <select id="done">
-        <option value="yes">Yes</option>
-        <option value="no">No</option>
-    </select>
-
-    <button onclick="runSimulation()">Submit</button>
-
-    <h2>Current Streaks:</h2>
-    <p id="training">Training streak: 0</p>
-    <p id="coding">Coding streak: 0</p>
-
+    <h1>Timer Meter</h1>
+    <div class="meter-container">
+        <div id="meter"></div>
+    </div>
+    <p>Time Left: <span id="time-display">100</span> seconds</p>
+    <div id="buttons-container">
+        <button onclick="increaseTime(5)">+5s</button>
+        <button onclick="increaseTime(10)">+10s</button>
+        <button onclick="increaseTime(20)">+20s</button>
+    </div>
+    <div class="new-button-container">
+        <input type="number" id="newTimeValue" placeholder="Enter time to add">
+        <button onclick="addNewButton()">Add New Button</button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
